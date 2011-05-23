@@ -25,9 +25,16 @@ def getconf():
     if (not os.access(confile,os.F_OK)):
         print ('getconf: could not find the configuration file ' + confile)
         return
-    resdict = {}
     fin = open(confile,'r')
-    rawfile = fin.read()
+    try:
+        rawfile = fin.read()
+    finally:
+        fin.close()
+
+    return rawfile
+
+def processconf(rawfile):
+    resdict = {}
     for line in rawfile.split('\n'):
         if line.strip().startswith('value'):
             resdict['value'] = line.split('=')[1].strip()
@@ -166,7 +173,7 @@ def makevert(resdict):
 
 """ main() """
 def main():
-    resdict = getconf()
+    resdict = processconf(getconf())
     resdict['name'] = makename(resdict)
     makehorz(resdict)
     makevert(resdict)
