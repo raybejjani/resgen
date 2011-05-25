@@ -1,6 +1,7 @@
 from pyjamas.ui.Button import Button
 from pyjamas.ui.RootPanel import RootPanel
 from pyjamas.ui.HTML import HTML
+from pyjamas.ui.VerticalPanel import VerticalPanel
 from pyjamas.ui.HorizontalPanel import HorizontalPanel
 from pyjamas.ui.TextArea import TextArea
 from pyjamas import Window
@@ -30,14 +31,25 @@ def convert(sender):
 
 if __name__ == '__main__':
     b = Button("Convert", convert)
-    ta = TextArea()
 
     p = HorizontalPanel()
     p.add(inputArea)
-    p.add(b)
     p.add(outputArea)
    
-    p.setStyleName("panel")
+    q = VerticalPanel()
+    q.setStyleName("panel")
+    q.add(b)
+    q.add(p)
 
-    RootPanel().add(p)
+   
+    q.setHeight("100%")
+    q.setWidth("100%")
+    p.setHeight("80%")
+    p.setWidth("100%")
+    inputArea.setHeight("100%")
+    inputArea.setWidth("100%")
+    outputArea.setHeight("100%")
+    outputArea.setWidth("100%")
+
+    RootPanel().add(q)
 
