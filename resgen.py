@@ -8,6 +8,7 @@
 hfile = 'resgen_h.tpl' # Horizontal resistor template
 vfile = 'resgen_v.tpl' # Vertical resistor template
 confile = 'resgen.conf' # Specific resistor configuration file
+outpath = '..' # Where the generated symbols will be saved
 """ Fill in the naming convention for footprints """
 footdict = {'1206_resistor.fp':'1206',
             '0603_resistor.fp':'0603'}
@@ -33,13 +34,12 @@ def getconf():
         rawfile = fin.read()
     finally:
         fin.close()
-
     return rawfile
 
 def makehorz(resdict):
     """ makehorz(Resistor dictionary)
     Make the horizontal symbol """
-    outname = resdict['name'] + '_horz.sym'
+    outname = outpath + '/' + resdict['name'] + '_horz.sym'
     if os.access(outname,os.F_OK):
         print ('resgen.makehorz: ' + outname + ' already exists.')
         return
@@ -56,7 +56,7 @@ def makehorz(resdict):
 def makevert(resdict):
     """ makevert(Resistor dictionary)
     Make the vertical symbol """
-    outname = resdict['name'] + '_vert.sym'
+    outname = outpath + '/' + resdict['name'] + '_vert.sym'
     if os.access(outname,os.F_OK):
         print ('resgen.makevert: ' + outname + ' already exists.')
         return
