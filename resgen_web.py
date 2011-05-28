@@ -5,6 +5,8 @@ from pyjamas.ui.VerticalPanel import VerticalPanel
 from pyjamas.ui.HorizontalPanel import HorizontalPanel
 from pyjamas.ui.TextArea import TextArea
 from pyjamas import Window
+from pyjamas.ui.Frame import Frame
+import base64
 
 import resgen_core
 
@@ -30,6 +32,8 @@ def convert(sender):
     resdict = resgen_core.processconf(inputArea.getText())
     hData = resgen_core.processhorz(resdict, hTemplate, footdict)
     outputArea.setText(hData)
+    frm = Frame("data:application/text;base64," + base64.encodestring(hData))
+    RootPanel().add(frm)
 
 if __name__ == '__main__':
     b = Button("Convert", convert)
