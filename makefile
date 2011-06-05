@@ -21,7 +21,7 @@ pyjamas-0.8alpha1:
 	tar -xf $@.tar.bz2
 
 webpy: web.py-0.35
-	ln -fs web.py-0.35 webpy
+	ln -fs $< webpy
 
 web.py-0.35:
 	tar -xf $@.tar.gz
