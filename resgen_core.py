@@ -113,7 +113,8 @@ def processhorz(resdict, template, footdict):
 
 def processvert(resdict, template, footdict):
     """Construct a vertical part"""
-    return "".join(['T 0 1700 8 10 0 0 0 0 1' + '\n', # Footprint
+    return "".join([template,
+                    'T 0 1700 8 10 0 0 0 0 1' + '\n', # Footprint
                     'footprint=' + resdict['footprint'] + '\n',
                     'T 0 1495 8 10 0 0 0 0 1' + '\n', # Part number
                     'part=' + resdict['part'] + '\n',
